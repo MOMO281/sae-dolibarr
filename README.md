@@ -1,5 +1,5 @@
-Liébart Corentin
-Moreau Morgan
+- Liébart Corentin
+- Moreau Morgan
 
 # Journal de Projet SAÉ Dolibarr
 
