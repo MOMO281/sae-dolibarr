@@ -22,7 +22,7 @@
   - Accès refusé (`Access Denied`) lors de l'importation.
   - Recherche de solutions pour corriger ce problème.
 
-## 07/11/2024 (8h30 - 11h30)
+## 12/11/2024 (8h30 - 11h30)
 - **Création d'un utilisateur dolibarr `test` avec mdp `test123456789`**
   - Changement des droits de cet utilisateur pour qu'il puisse importer des données 
 - **Changement du mdp de l'utilisateur mySQL `root` en `root`**
