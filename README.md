@@ -5,7 +5,7 @@
 
 ## 05/11/2024 (14h30 - 17h30)
 - **Installation de la VM**
-- **Création du dépôt Git** : `sae_dolibarr`
+- **Création du dépôt Git** : `sae-dolibarr`
 - **Documentation sur Dolibarr**
 
 ## 06/11/2024 (8h30 - 11h30)
