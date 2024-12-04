@@ -1,30 +1,40 @@
-version: '3.1'
+# Edit this file then run 
+# docker-compose up -d
+# docker-compose logs
 
 services:
-  dolibarr:
-    image: dolibarr/dolibarr
-    container_name: dolibarr
-    environment:
-      - DOLI_DB_HOST=db
-      - DOLI_DB_USER=dolibarr_user
-      - DOLI_DB_PASSWORD=secret_password
-      - DOLI_DB_NAME=dolibarr_db
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
+    mariadb:
+        image: mariadb:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+            MYSQL_DATABASE: ${MYSQL_DATABASE:-dolidb}
+            MYSQL_USER: ${MYSQL_USER:-dolidbuser}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-dolidbpass}
 
-  db:
-    image: mysql:5.7
-    container_name: dolibarr_db
-    environment:
-      - MYSQL_ROOT_PASSWORD=root_password
-      - MYSQL_DATABASE=dolibarr_db
-      - MYSQL_USER=dolibarr_user
-      - MYSQL_PASSWORD=secret_password
-    volumes:
-      - db_data:/var/lib/mysql
+        volumes:
+            - /home/dolibarr_mariadb:/var/lib/mysql
 
-volumes:
-  db_data:
+    web:
+        image: dolibarr/dolibarr:latest
+        environment:
+            WWW_USER_ID: ${WWW_USER_ID:-1000}
+            WWW_GROUP_ID: ${WWW_GROUP_ID:-1000}
+            DOLI_DB_HOST: ${DOLI_DB_HOST:-mariadb}
+            DOLI_DB_NAME: ${DOLI_DB_NAME:-dolidb}
+            DOLI_DB_USER: ${DOLI_DB_USER:-dolidbuser}
+            DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolidbpass}
+            DOLI_URL_ROOT: "${DOLI_URL_ROOT:-http://0.0.0.0}"
+            DOLI_ADMIN_LOGIN: "${DOLI_ADMIN_LOGIN:-admin}"
+            DOLI_ADMIN_PASSWORD: "${DOLI_ADMIN_PASSWORD:-admin}"
+            DOLI_CRON: ${DOLI_CRON:-0}
+            DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-0}
+            DOLI_COMPANY_NAME: ${DOLI_COMPANY_NAME:-MyBigCompany}
+
+        ports:
+            - "8080:80"
+        links:
+            - mariadb
+        volumes:
+            - /home/dolibarr_documents:/var/www/documents
+            - /home/dolibarr_custom:/var/www/html/custom
 
