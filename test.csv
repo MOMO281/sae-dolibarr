@@ -1,7 +1,4 @@
-ID,Nom,Adresse,Téléphone,Email
-1,Jean Dupont,123 Rue de Paris,0601020304,jean.dupont@example.com
-2,Marie Curie,456 Avenue des Sciences,0605060708,marie.curie@example.com
-3,Paul Martin,789 Boulevard des Arts,0608091011,paul.martin@example.com
-4,Louise Lefevre,101 Place de la Liberté,0612131415,louise.lefevre@example.com
-5,Pierre Dubois,202 Quai de la Seine,0616171819,pierre.dubois@example.com
+firstname,lastname,login,password,email,admin,status
+John,Doe,john_doe,hashed_password,john@example.com,0,1
+Jane,Smith,jane_smith,hashed_password,jane@example.com,1,1
 

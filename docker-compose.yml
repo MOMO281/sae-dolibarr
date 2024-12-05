@@ -5,21 +5,27 @@
 services:
     mariadb:
         image: mariadb:latest
+        container_name: mariadb
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
             MYSQL_DATABASE: ${MYSQL_DATABASE:-dolidb}
             MYSQL_USER: ${MYSQL_USER:-dolidbuser}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD:-dolidbpass}
+        ports:
+             - "3306:3306" 
 
         volumes:
             - /home/dolibarr_mariadb:/var/lib/mysql
+        networks:
+            - dolibarr-network
 
     web:
         image: dolibarr/dolibarr:latest
+        container_name: dolibarr
         environment:
             WWW_USER_ID: ${WWW_USER_ID:-1000}
             WWW_GROUP_ID: ${WWW_GROUP_ID:-1000}
-            DOLI_DB_HOST: ${DOLI_DB_HOST:-mariadb}
+            DOLI_DB_HOST: mariadb
             DOLI_DB_NAME: ${DOLI_DB_NAME:-dolidb}
             DOLI_DB_USER: ${DOLI_DB_USER:-dolidbuser}
             DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolidbpass}
@@ -37,4 +43,9 @@ services:
         volumes:
             - /home/dolibarr_documents:/var/www/documents
             - /home/dolibarr_custom:/var/www/html/custom
+        networks:
+            - dolibarr-network  # Ajouter le conteneur à un réseau
 
+networks:
+  dolibarr-network:  # Définir un réseau 
+    driver: bridge  # Utiliser le driver "bridge" (par défaut)
