@@ -1,44 +1,81 @@
-# Documentation complète pour l'installation, l'importation et la gestion des sauvegardes de Dolibarr
+MOREAU Morgan
+LIEBART Corentin
 
-Cette documentation fournit un guide détaillé sur l'installation de **Dolibarr**, l'importation de données à partir d'un fichier **CSV**, et la gestion des **sauvegardes automatisées**.
 
-## Table des matières
-
-1. [Prérequis](#prérequis)
-2. [Installation de Dolibarr via Docker](#installation-de-dolibarr-via-docker)
-   - [Démarrer Dolibarr](#démarrer-dolibarr)
-3. [Importer des Données via un Fichier CSV](#importer-des-données-via-un-fichier-csv)
-   - [Préparer le fichier CSV](#préparer-le-fichier-csv)
-   - [Exécuter le script d'importation](#exécuter-le-script-dimportation)
-4. [Configurer les Sauvegardes Automatisées](#configurer-les-sauvegardes-automatisées)
-   - [Planifier les sauvegardes avec cron](#planifier-les-sauvegardes-avec-cron)
-   - [Restaurer une sauvegarde](#restaurer-une-sauvegarde)
-5. [Conclusion](#conclusion)
-
----
+# Installation et Utilisation de Dolibarr avec Docker Compose
 
 ## Prérequis
+- Docker installé sur votre machine.
+- Docker Compose installé sur votre machine.
+- Les scripts import_csv.sh et backup.sh disponibles dans le répertoire principal.
 
-Avant de commencer, vous devez vous assurer que les éléments suivants sont installés sur votre machine :
+## Configuration
+Votre configuration est définie dans un fichier docker-compose.yml. Ce fichier configure deux services :
 
-- **Docker** et **Docker Compose** : pour configurer et exécuter des conteneurs.
-- **MySQL Client** (ou un autre client SQL) : pour interagir avec la base de données MariaDB via la ligne de commande.
-- **Bash** : pour exécuter des scripts automatisés pour l'importation et la gestion des sauvegardes.
+MariaDB : Base de données pour Dolibarr.
+Dolibarr : Application principale.
+Dossiers utilisés
+/home/dolibarr_mariadb : Contient les données de la base MariaDB.
+/home/dolibarr_documents : Contient les documents Dolibarr.
+/home/dolibarr_custom : Contient les fichiers personnalisés Dolibarr.
+Variables d'environnement principales
+DOLI_DB_HOST : Hôte de la base de données.
+DOLI_DB_NAME : Nom de la base de données.
+DOLI_DB_USER : Utilisateur de la base de données.
+DOLI_DB_PASSWORD : Mot de passe de la base de données.
+DOLI_ADMIN_LOGIN : Identifiant administrateur Dolibarr.
+DOLI_ADMIN_PASSWORD : Mot de passe administrateur Dolibarr.
+Lancer Dolibarr
+Lancer les conteneurs :
 
----
 
-## Installation de Dolibarr via Docker
+''' ./install.sh '''
 
-### Démarrer Dolibarr
+## Accéder à Dolibarr :
 
-1. **Clonez ou placez les fichiers Docker Compose** dans un répertoire spécifique.
+Ouvrez un navigateur web et accédez à : http://localhost:8080
+Identifiez-vous avec :
+- Login : admin (ou la valeur de DOLI_ADMIN_LOGIN si modifiée).
+- Mot de passe : admin (ou la valeur de DOLI_ADMIN_PASSWORD si modifiée).
 
-   Si vous n'avez pas encore de fichier `docker-compose.yml`, vous pouvez en créer un avec la configuration nécessaire pour Dolibarr et MariaDB.
+##Arrêter les conteneurs :
 
-2. **Lancer Docker Compose** :
 
-   Allez dans le répertoire où vous avez placé le fichier `docker-compose.yml` et lancez les commandes suivantes :
+docker-compose down
 
-   ```bash
-   docker-compose up -d
+## Importer des données depuis un fichier CSV
+Un script import_csv.sh est fourni pour automatiser l'importation de données.
+
+Script : import_csv.sh
+Pré-requis
+Assurez-vous que le fichier test.csv est prêt et contient les données à importer.
+Lancer l'importation
+Copiez le fichier test.csv dans le répertoire du script.
+Exécutez le script :
+
+./import_csv.sh
+
+Le script se connecte à la base MariaDB et insère les données de test.csv dans la base de Dolibarr.
+
+
+## Sauvegarder les données
+Un script backup.sh est inclus pour sauvegarder les données.
+
+Script : backup.sh
+Sauvegarder
+Exécutez le script :
+
+./backup.sh
+
+Le script sauvegarde :
+Les données MariaDB dans un fichier .sql.
+Les documents Dolibarr dans un répertoire spécifique.
+Restaurer
+Pour restaurer, utilisez le fichier de sauvegarde généré et placez-le dans MariaDB.
+
+
+
+
+
+
 
