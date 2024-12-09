@@ -45,6 +45,7 @@ Un script backup.sh est inclus pour sauvegarder les données.
 
 Script : backup.sh
 - Sauvegarder
+
 Exécutez le script :
 
 ```./backup.sh```
@@ -54,6 +55,7 @@ Les données MariaDB dans un fichier
 Les documents Dolibarr dans un répertoire spécifique.
 
 - Restaurer
+
 Pour restaurer, utilisez le fichier de sauvegarde généré et placez-le dans MariaDB.
 
 
