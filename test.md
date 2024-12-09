@@ -25,6 +25,7 @@ Ce dépôt contient les fichiers suivants :
 ### 1. Cloner le dépôt
 
 Clonez le dépôt Git sur votre machine locale :
+
 git clone git@github.com:MOMO281/sae-dolibarr.git
 
 cd sae-dolibarr
@@ -33,7 +34,7 @@ cd sae-dolibarr
 
 Pour démarrer Dolibarr et MariaDB via Docker Compose, exécutez le script install.sh :
 
-bash
+'''bash
 ./install.sh
 
 Ce script utilise le fichier docker-compose.yml pour construire et démarrer les conteneurs nécessaires.
@@ -42,7 +43,7 @@ Ce script utilise le fichier docker-compose.yml pour construire et démarrer les
 Préparez un fichier CSV contenant les informations des utilisateurs au format suivant csv
 Éxécutez ensuite la commande :
 
-bash
+'''bash
 ./import_csv.sh
 
 ### 4. Sauvegarder la base de données et les fichiers
