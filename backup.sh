@@ -5,7 +5,7 @@ DB_HOST="172.18.0.1"          # Hôte de la base de données
 DB_NAME="dolidb"              # Nom de la base de données
 DB_USER="root"                # Utilisateur de la base de données
 DB_PASS="root"                # Mot de passe de la base de données
-BACKUP_DIR="~/sae-dolibarr"  # Dossier de sauvegarde local
+BACKUP_DIR="backups"  # Dossier de sauvegarde local
 DATE=$(date +'%Y%m%d%H%M%S')  # Date et heure actuelles pour le nom du fichier
 
 # Créer le dossier de sauvegarde s'il n'existe pas

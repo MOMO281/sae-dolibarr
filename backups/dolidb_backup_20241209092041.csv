@@ -1,0 +1,15 @@
+type,firstname,lastname,email,login,statut,datec,file_path,modified_time
+user	NULL	SuperAdmin	NULL	admin	1	NULL
+user	NULL	NULL	NULL		0	NULL
+user	fer	ver		test	1	2024-12-09 12:43:32
+user	NULL	NULL	john.doe@example.com	password123	0	2024-12-09 13:19:07
+user	NULL	NULL	jane.smith@example.com	secretpass	0	2024-12-09 13:19:07
+user	NULL	NULL	alice.johnson@example.com	alicepass	0	2024-12-09 13:19:07
+user	NULL	NULL	bob.martin@example.com	bobpass	0	2024-12-09 13:19:07
+user	NULL	NULL			1	2024-12-09 13:19:08
+user	John	Doe	john.doe@example.com	johndoe	1	2024-12-09 14:02:06
+user	Jane	Smith	jane.smith@example.com	janesmith	1	2024-12-09 14:02:06
+user	Alice	Johnson	alice.johnson@example.com	alicejohnson	1	2024-12-09 14:02:06
+user	Bob	Martin	bob.martin@example.com	bobmartin	1	2024-12-09 14:02:06
+file,/home/dolibarr_documents/initdb.log,,/home/dolibarr_documents/initdb.log,2024-12-09 07:41:09.969564565 -0500
+file,/home/dolibarr_documents/install.lock,,/home/dolibarr_documents/install.lock,2024-12-09 07:41:09.997564670 -0500
