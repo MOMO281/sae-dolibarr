@@ -1,28 +1,60 @@
-- Liébart Corentin
-- Moreau Morgan
+- MOREAU Morgan
+- LIEBART Corentin
 
-# Journal de Projet SAÉ Dolibarr
 
-## 05/11/2024 (14h30 - 17h30)
-- **Installation de la VM**
-- **Création du dépôt Git** : `sae-dolibarr`
-- **Documentation sur Dolibarr**
+# Installation et Utilisation de Dolibarr avec Docker Compose
 
-## 06/11/2024 (8h30 - 11h30)
-- **Installation de Dolibarr** :
-  - Problèmes rencontrés avec `wget` : impossible de décompresser l'archive téléchargée.
-- **Installation de Docker** :
-  - Utilisation de Docker pour exécuter une image Dolibarr via Docker Compose.
+## Prérequis
+- Docker installé sur votre machine.
+- Docker Compose installé sur votre machine.
+- Les scripts import_csv.sh et backup.sh et install.sh disponibles dans le répertoire principal.
 
-## 07/11/2024 (8h30 - 19h)
-- **Création d'un fichier `docker-compose.yml`** pour lancer l'image Dolibarr.
-- **Création des scripts `install.sh` et `import_csv.sh`**.
-- **Création d'un fichier `test.csv`** pour les tests.
-- **Tentative d'importation des données du fichier `test.csv`** :
-  - Accès refusé (`Access Denied`) lors de l'importation.
-  - Recherche de solutions pour corriger ce problème.
+## Lancer les conteneurs :
 
-## 12/11/2024 (8h30 - 11h30)
-- **Création d'un utilisateur dolibarr `test` avec mdp `test123456789`**
-  - Changement des droits de cet utilisateur pour qu'il puisse importer des données 
-- **Changement du mdp de l'utilisateur mySQL `root` en `root`**
+``` ./install.sh ```
+
+## Accéder à Dolibarr :
+
+Ouvrez un navigateur web et accédez à : http://localhost:8080
+Identifiez-vous avec :
+- Login : admin 
+- Mot de passe : admin 
+
+## Arrêter les conteneurs :
+
+```docker-compose down```
+
+## Importer des données depuis un fichier CSV
+Un script import_csv.sh est fourni pour l'importation de données.
+
+Script : import_csv.sh
+- Pré-requis
+Assurez-vous que le fichier test.csv est prêt et contient les données à importer.
+- Lancer l'importation
+Copiez le fichier test.csv dans le répertoire du script.
+
+Exécutez le script :
+
+```./import_csv.sh```
+
+Le script se connecte à la base MariaDB et insère les données de test.csv dans la base de Dolibarr.
+
+
+## Sauvegarder les données
+Un script backup.sh est inclus pour sauvegarder les données.
+
+Script : backup.sh
+- Sauvegarder
+
+Exécutez le script :
+
+```./backup.sh```
+
+Le script sauvegarde :
+Les données MariaDB dans un fichier 
+Les documents Dolibarr dans un répertoire spécifique.
+
+- Restaurer
+
+Pour restaurer, utilisez le fichier de sauvegarde généré et placez-le dans MariaDB.
+
