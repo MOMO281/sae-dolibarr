@@ -1,5 +1,5 @@
-MOREAU Morgan
-LIEBART Corentin
+- MOREAU Morgan
+- LIEBART Corentin
 
 
 # Installation et Utilisation de Dolibarr avec Docker Compose
@@ -9,11 +9,7 @@ LIEBART Corentin
 - Docker Compose installé sur votre machine.
 - Les scripts import_csv.sh et backup.sh et install.sh disponibles dans le répertoire principal.
 
-## Configuration
-Votre configuration est définie dans un fichier docker-compose.yml. Ce fichier configure deux services :
-
-Lancer les conteneurs :
-
+## Lancer les conteneurs :
 
 ``` ./install.sh ```
 
@@ -21,15 +17,15 @@ Lancer les conteneurs :
 
 Ouvrez un navigateur web et accédez à : http://localhost:8080
 Identifiez-vous avec :
-- Login : admin (ou la valeur de DOLI_ADMIN_LOGIN si modifiée).
-- Mot de passe : admin (ou la valeur de DOLI_ADMIN_PASSWORD si modifiée).
+- Login : admin 
+- Mot de passe : admin 
 
 ## Arrêter les conteneurs :
 
 ```docker-compose down```
 
 ## Importer des données depuis un fichier CSV
-Un script import_csv.sh est fourni pour automatiser l'importation de données.
+Un script import_csv.sh est fourni pour l'importation de données.
 
 Script : import_csv.sh
 - Pré-requis
