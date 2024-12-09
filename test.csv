@@ -1,6 +1,6 @@
-firstname,lastname,email,password
-John,Doe,john.doe@example.com,password123
-Jane,Smith,jane.smith@example.com,secretpass
-Alice,Johnson,alice.johnson@example.com,alicepass
-Bob,Martin,bob.martin@example.com,bobpass
+firstname,lastname,email,login,password
+John,Doe,john.doe@example.com,johndoe,password123
+Jane,Smith,jane.smith@example.com,janesmith,secretpass
+Alice,Johnson,alice.johnson@example.com,alicejohnson,alicepass
+Bob,Martin,bob.martin@example.com,bobmartin,bobpass
 
