@@ -42,7 +42,7 @@ Préparez un fichier CSV contenant les informations des utilisateurs au format s
 bash
 ./import_csv.sh
 
-###4. Sauvegarder la base de données et les fichiers
+### 4. Sauvegarder la base de données et les fichiers
 
 Pour effectuer une sauvegarde combinée de la base de données Dolibarr et des fichiers associés, exécutez :
 
