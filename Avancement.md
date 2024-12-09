@@ -29,5 +29,5 @@
 
 ## 04/12/2024 (8h30 - 11h30)
 - Résolution des problèmes
-- **Création d'un script 'backup.sh' afin de faire des sauvegardes des données**
-- **Modification du 'import_csv.sh' et du 'docker-compose.yml' afin de résussir a importer des données**
+- **Création d'un script 'backup.sh'** afin de faire des sauvegardes des données
+- **Modification du 'import_csv.sh'** et du 'docker-compose.yml' afin de résussir a importer des données
