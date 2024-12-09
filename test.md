@@ -25,38 +25,30 @@ Ce dépôt contient les fichiers suivants :
 ### 1. Cloner le dépôt
 
 Clonez le dépôt Git sur votre machine locale :
-```bash
-git clone <URL_DU_DEPOT>
-cd <NOM_DU_DEPOT>
-2. Lancer Dolibarr et MariaDB
-Pour démarrer Dolibarr et MariaDB via Docker Compose, exécutez le script install.sh :
+git clone git@github.com:MOMO281/sae-dolibarr.git
+cd sae-dolibarr
 
+### 2. Lancer Dolibarr et MariaDB
+
+Pour démarrer Dolibarr et MariaDB via Docker Compose, exécutez le script install.sh :
 bash
-Copier le code
-bash install.sh
+./install.sh
+
 Ce script utilise le fichier docker-compose.yml pour construire et démarrer les conteneurs nécessaires.
 
-3. Importer des utilisateurs dans Dolibarr
-Préparez un fichier CSV contenant les informations des utilisateurs au format suivant :
-
-csv
-Copier le code
-firstname,lastname,email,login,password
-John,Doe,john.doe@example.com,johndoe,password123
-Jane,Smith,jane.smith@example.com,janesmith,secretpass
-Alice,Johnson,alice.johnson@example.com,alicejohnson,alicepass
-Bob,Martin,bob.martin@example.com,bobmartin,bobpass
-Placez ce fichier CSV (par exemple test.csv) dans le répertoire principal, puis exécutez le script suivant pour importer les données :
-
+### 3. Importer des utilisateurs dans Dolibarr
+Préparez un fichier CSV contenant les informations des utilisateurs au format suivant csv
+Éxécutez ensuite la commande :
 bash
-Copier le code
-bash import_csv.sh
-4. Sauvegarder la base de données et les fichiers
+./import_csv.sh
+
+###4. Sauvegarder la base de données et les fichiers
+
 Pour effectuer une sauvegarde combinée de la base de données Dolibarr et des fichiers associés, exécutez :
 
 bash
-Copier le code
-bash backup.sh
+./backup.sh
+
 Les sauvegardes sont stockées dans le dossier backups avec un fichier nommé au format dolidb_backup_YYYYMMDDHHMMSS.csv. Ce fichier contient :
 
 Les informations des utilisateurs (extraites de la base de données).
