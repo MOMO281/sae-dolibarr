@@ -26,3 +26,8 @@
 - **Création d'un utilisateur dolibarr `test` avec mdp `test123456789`**
   - Changement des droits de cet utilisateur pour qu'il puisse importer des données 
 - **Changement du mdp de l'utilisateur mySQL `root` en `root`**
+
+## 04/12/2024 (8h30 - 11h30)
+- Résolution des problèmes
+- **Création d'un script 'backup.sh' afin de faire des sauvegardes des données**
+- **Modification du 'import_csv.sh' et du 'docker-compose.yml' afin de résussir a importer des données**
