@@ -7,7 +7,7 @@ LIEBART Corentin
 ## Prérequis
 - Docker installé sur votre machine.
 - Docker Compose installé sur votre machine.
-- Les scripts import_csv.sh et backup.sh disponibles dans le répertoire principal.
+- Les scripts import_csv.sh et backup.sh et install.sh disponibles dans le répertoire principal.
 
 ## Configuration
 Votre configuration est définie dans un fichier docker-compose.yml. Ce fichier configure deux services :
