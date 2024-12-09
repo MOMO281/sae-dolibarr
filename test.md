@@ -32,6 +32,7 @@ cd sae-dolibarr
 ### 2. Lancer Dolibarr et MariaDB
 
 Pour démarrer Dolibarr et MariaDB via Docker Compose, exécutez le script install.sh :
+
 bash
 ./install.sh
 
@@ -40,6 +41,7 @@ Ce script utilise le fichier docker-compose.yml pour construire et démarrer les
 ### 3. Importer des utilisateurs dans Dolibarr
 Préparez un fichier CSV contenant les informations des utilisateurs au format suivant csv
 Éxécutez ensuite la commande :
+
 bash
 ./import_csv.sh
 
