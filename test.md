@@ -26,6 +26,7 @@ Ce dépôt contient les fichiers suivants :
 
 Clonez le dépôt Git sur votre machine locale :
 git clone git@github.com:MOMO281/sae-dolibarr.git
+
 cd sae-dolibarr
 
 ### 2. Lancer Dolibarr et MariaDB
