@@ -1,4 +1,6 @@
-firstname,lastname,login,password,email,admin,status
-John,Doe,john_doe,hashed_password,john@example.com,0,1
-Jane,Smith,jane_smith,hashed_password,jane@example.com,1,1
+firstname,lastname,email,password
+John,Doe,john.doe@example.com,password123
+Jane,Smith,jane.smith@example.com,secretpass
+Alice,Johnson,alice.johnson@example.com,alicepass
+Bob,Martin,bob.martin@example.com,bobpass
 

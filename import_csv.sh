@@ -1,28 +1,39 @@
 #!/bin/bash
 
-# Define the path to your test.csv and MariaDB credentials
-CSV_FILE="./test.csv"
-MYSQL_HOST="172.18.0.1"
-MYSQL_USER="${MYSQL_USER:-dolidbuser}"
-MYSQL_PASSWORD="${MYSQL_PASSWORD:-dolidbpass}"
-MYSQL_DB="${MYSQL_DATABASE:-dolidb}"
+# Configuration de la base de données
+DB_HOST="172.18.0.1"            # Hôte de la base de données
+DB_NAME="dolidb"             # Nom de la base de données Dolibarr
+DB_USER="root"                 # Utilisateur de la base de données
+DB_PASS="root"                     # Mot de passe de la base de données (vide si nécessaire)
+CSV_FILE="test.csv"           # Fichier CSV contenant les utilisateurs
 
-# Example: Import the CSV file into a Dolibarr table (adjust the table name and columns as needed)
-TABLE_NAME="llx_user"  # Replace with the appropriate Dolibarr table
-FIELDS_TERMINATED_BY=","
-ENCLOSED_BY='"'
+# Vérification si le fichier CSV existe
+if [[ ! -f "$CSV_FILE" ]]; then
+  echo "Erreur : Le fichier CSV '$CSV_FILE' n'existe pas."
+  exit 1
+fi
 
-# Commande pour importer un CSV
-mysql --host=$MYSQL_HOST --user=$MYSQL_USER --password=$MYSQL_PASSWORD --local-infile=1 $MYSQL_DB <<EOF
-LOAD DATA LOCAL INFILE '$CSV_FILE'
-INTO TABLE $TABLE_NAME
-FIELDS TERMINATED BY '$FIELDS_TERMINATED_BY'
-ENCLOSED BY '$ENCLOSED_BY'
-IGNORE 1 LINES;
-EOF
+# Lire le fichier CSV et insérer chaque utilisateur dans la base de données
+while IFS=',' read -r firstname lastname email login password
+do
+  # Ignorer la ligne d'en-tête
+  if [[ "$firstname" == "firstname" ]]; then
+    continue
+  fi
 
-# Optionally, you can verify if the data is imported by running a simple SELECT query.
-mysql --host=$MYSQL_HOST --user=$MYSQL_USER --password=$MYSQL_PASSWORD $MYSQL_DB -e "SELECT * FROM $TABLE_NAME LIMIT 10;"
+  # Hachage du mot de passe (adapté à la base de données Dolibarr)
+  hashed_password=$(echo -n "$password" | openssl dgst -sha256)
 
-echo "Import complete."
+  # Préparer la requête d'insertion dans la table llx_user
+  QUERY="INSERT INTO llx_user (login, pass, email, statut, datec)
+         VALUES ('$login', '$hashed_password', '$email', 1, NOW());"
+
+  # Exécuter la requête SQL pour insérer l'utilisateur
+  echo "$QUERY" | mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME"
+
+  echo "Utilisateur $email ajouté avec succès."
+
+done < "$CSV_FILE"
+
+echo "Importation terminée."
 

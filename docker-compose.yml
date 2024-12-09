@@ -1,51 +1,48 @@
-# Edit this file then run 
-# docker-compose up -d
-# docker-compose logs
+version: "3"  # La version de Docker Compose
 
 services:
-    mariadb:
-        image: mariadb:latest
-        container_name: mariadb
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
-            MYSQL_DATABASE: ${MYSQL_DATABASE:-dolidb}
-            MYSQL_USER: ${MYSQL_USER:-dolidbuser}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD:-dolidbpass}
-        ports:
-             - "3306:3306" 
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dolidb
+      MYSQL_USER: dolidbuser
+      MYSQL_PASSWORD: dolidbpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - /home/dolibarr_mariadb:/var/lib/mysql
+    networks:
+      - dolibarr-network
 
-        volumes:
-            - /home/dolibarr_mariadb:/var/lib/mysql
-        networks:
-            - dolibarr-network
-
-    web:
-        image: dolibarr/dolibarr:latest
-        container_name: dolibarr
-        environment:
-            WWW_USER_ID: ${WWW_USER_ID:-1000}
-            WWW_GROUP_ID: ${WWW_GROUP_ID:-1000}
-            DOLI_DB_HOST: mariadb
-            DOLI_DB_NAME: ${DOLI_DB_NAME:-dolidb}
-            DOLI_DB_USER: ${DOLI_DB_USER:-dolidbuser}
-            DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolidbpass}
-            DOLI_URL_ROOT: "${DOLI_URL_ROOT:-http://0.0.0.0}"
-            DOLI_ADMIN_LOGIN: "${DOLI_ADMIN_LOGIN:-admin}"
-            DOLI_ADMIN_PASSWORD: "${DOLI_ADMIN_PASSWORD:-admin}"
-            DOLI_CRON: ${DOLI_CRON:-0}
-            DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-0}
-            DOLI_COMPANY_NAME: ${DOLI_COMPANY_NAME:-MyBigCompany}
-
-        ports:
-            - "8080:80"
-        links:
-            - mariadb
-        volumes:
-            - /home/dolibarr_documents:/var/www/documents
-            - /home/dolibarr_custom:/var/www/html/custom
-        networks:
-            - dolibarr-network  # Ajouter le conteneur à un réseau
+  web:
+    image: dolibarr/dolibarr:latest
+    container_name: dolibarr
+    environment:
+      WWW_USER_ID: ${WWW_USER_ID:-1000}
+      WWW_GROUP_ID: ${WWW_GROUP_ID:-1000}
+      DOLI_DB_HOST: mariadb
+      DOLI_DB_NAME: ${DOLI_DB_NAME:-dolidb}
+      DOLI_DB_USER: ${DOLI_DB_USER:-dolidbuser}
+      DOLI_DB_PASSWORD: ${DOLI_DB_PASSWORD:-dolidbpass}
+      DOLI_URL_ROOT: "${DOLI_URL_ROOT:-http://0.0.0.0}"
+      DOLI_ADMIN_LOGIN: "${DOLI_ADMIN_LOGIN:-admin}"
+      DOLI_ADMIN_PASSWORD: "${DOLI_ADMIN_PASSWORD:-admin}"
+      DOLI_CRON: ${DOLI_CRON:-0}
+      DOLI_INIT_DEMO: ${DOLI_INIT_DEMO:-0}
+      DOLI_COMPANY_NAME: ${DOLI_COMPANY_NAME:-MyBigCompany}
+    ports:
+      - "8080:80"
+    volumes:
+      - /home/dolibarr_documents:/var/www/documents
+      - /home/dolibarr_custom:/var/www/html/custom
+    networks:
+      - dolibarr-network  # Attacher le conteneur au réseau "dolibarr-network"
+    depends_on:
+      - mariadb  # Assurez-vous que mariadb est prêt avant de démarrer le service web
 
 networks:
-  dolibarr-network:  # Définir un réseau 
-    driver: bridge  # Utiliser le driver "bridge" (par défaut)
+  dolibarr-network:
+    driver: bridge  # Utilisation du réseau bridge par défaut
+
