@@ -29,7 +29,7 @@ Lancer Dolibarr
 Lancer les conteneurs :
 
 
-''' ./install.sh '''
+``` ./install.sh ```
 
 ## Accéder à Dolibarr :
 
@@ -41,7 +41,7 @@ Identifiez-vous avec :
 ##Arrêter les conteneurs :
 
 
-docker-compose down
+```docker-compose down```
 
 ## Importer des données depuis un fichier CSV
 Un script import_csv.sh est fourni pour automatiser l'importation de données.
@@ -53,7 +53,7 @@ Lancer l'importation
 Copiez le fichier test.csv dans le répertoire du script.
 Exécutez le script :
 
-./import_csv.sh
+```./import_csv.sh```
 
 Le script se connecte à la base MariaDB et insère les données de test.csv dans la base de Dolibarr.
 
@@ -65,7 +65,7 @@ Script : backup.sh
 Sauvegarder
 Exécutez le script :
 
-./backup.sh
+```./backup.sh```
 
 Le script sauvegarde :
 Les données MariaDB dans un fichier .sql.
